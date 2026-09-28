@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" role="img" aria-label="IdeaForge architecture diagram">
+  <style>
+    .t { font-family: 'IBM Plex Mono', monospace; font-size: 10px; fill: #EDE6DC; }
+    .m { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #9A8F82; }
+    .a { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #FF7A1A; }
+    .box { fill: #1C1815; stroke: #2E2822; stroke-width: 1; }
+    .inner { fill: none; stroke: #2E2822; stroke-width: 1; }
+    .dep { stroke: #FF7A1A; stroke-width: 1.25; fill: none; }
+    .flow { stroke: #9A8F82; stroke-width: 1; fill: none; }
+  </style>
+  <text x="12" y="18" class="m">CLEAN ARCHITECTURE — DEPENDENCIES POINT INWARD</text>
+  <line x1="8" y1="26" x2="552" y2="26" class="inner"/>
+
+  <!-- API outer -->
+  <rect x="12" y="40" width="536" height="120" class="box"/>
+  <text x="20" y="58" class="a">API (OUTER)</text>
+  <text x="20" y="72" class="t">IdeasController · ValidationBehavior · ExceptionMiddleware · Program.cs</text>
+  <text x="20" y="86" class="m">thin controllers: receive → MediatR.Send → return {success, data, message}</text>
+
+  <!-- Infrastructure -->
+  <rect x="24" y="96" width="512" height="52" class="box"/>
+  <text x="32" y="114" class="a">INFRASTRUCTURE</text>
+  <text x="32" y="128" class="t">EF Core DbContext · IdeaRepository · Migrations</text>
+  <text x="32" y="140" class="m">Npgsql + EF Core live here only — auto-migrate on boot (5 retries)</text>
+
+  <!-- Application -->
+  <rect x="36" y="150" width="488" height="2" class="inner"/>
+  <rect x="36" y="154" width="488" height="120" class="box"/>
+  <text x="44" y="172" class="a">APPLICATION</text>
+  <text x="44" y="186" class="t">IIdeaRepository (interface) · CQRS Commands / Queries / Handlers · Validators</text>
+  <text x="44" y="200" class="m">CreateIdeaCommand + Handler + Validator per operation</text>
+  <text x="44" y="214" class="a">INVERSION POINT: IIdeaRepository crosses Application / Infrastructure boundary</text>
+  <text x="44" y="228" class="m">FluentValidation runs in MediatR pipeline — invalid data never reaches handler</text>
+  <text x="44" y="242" class="m">ORDER BY PriorityScore DESC — database does the ranking</text>
+  <text x="44" y="256" class="m">Captured → Evaluated → In Build → Live (no skips · Live/Rejected terminal)</text>
+
+  <!-- Domain inner -->
+  <rect x="48" y="282" width="464" height="64" class="box"/>
+  <text x="56" y="300" class="a">DOMAIN (INNERMOST · ZERO DEPS)</text>
+  <text x="56" y="314" class="t">Idea entity · IdeaStatus enum · PriorityScoreEngine</text>
+  <text x="56" y="328" class="m">PriorityScore = (V×2.0)+(U×1.5)+(F×1.0)−(R×1.5), floored at 0</text>
+  <text x="56" y="340" class="m">enums as strings · GUID keys · pure static function, &lt;1ms test</text>
+
+  <!-- dependency arrows inward -->
+  <path d="M280 96 V80" class="dep"/>
+  <path d="M280 154 V150" class="dep"/>
+  <path d="M280 282 V274" class="dep"/>
+
+  <!-- request flow -->
+  <text x="12" y="368" class="m">REQUEST FLOW</text>
+  <text x="12" y="384" class="t">Client → Controller → MediatR → ValidationBehavior → Handler → IIdeaRepository → DB</text>
+  <path d="M12 396 H548" class="flow"/>
+  <text x="12" y="412" class="m">PATCH for status transitions (partial change) · GUID keys (no enumeration)</text>
+  <text x="12" y="428" class="m">12 tests green: Domain scoring · mocked handlers · validators · DATABASE_URL normalize</text>
+  <text x="12" y="444" class="a">ALL DEPENDENCY ARROWS POINT INWARD — Domain references nothing</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Bellanzo portfolio social card">
+  <rect width="1200" height="630" fill="#14110F"/>
+  <rect x="32" y="32" width="1136" height="566" fill="none" stroke="#2E2822" stroke-width="1"/>
+  <line x1="32" y1="120" x2="1168" y2="120" stroke="#221D18" stroke-width="1"/>
+  <line x1="32" y1="500" x2="1168" y2="500" stroke="#221D18" stroke-width="1"/>
+  <line x1="720" y1="120" x2="720" y2="500" stroke="#2E2822" stroke-width="1"/>
+  <text x="64" y="85" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="600" fill="#EDE6DC" letter-spacing="1.5">BELLANZO</text>
+  <text x="180" y="85" font-family="IBM Plex Mono, monospace" font-size="13" fill="#9A8F82" letter-spacing="1">// PORTFOLIO</text>
+  <circle cx="985" cy="80" r="4.5" fill="#FF7A1A"/>
+  <text x="1000" y="85" font-family="IBM Plex Mono, monospace" font-size="13" fill="#EDE6DC" letter-spacing="0.5">OPEN TO WORK</text>
+  <text x="64" y="165" font-family="IBM Plex Mono, monospace" font-size="12" fill="#9A8F82" letter-spacing="2">01 // BACKEND ENGINEER — LAGOS, NIGERIA</text>
+  <text x="64" y="222" font-family="IBM Plex Sans, sans-serif" font-size="44" font-weight="700" fill="#EDE6DC">Adeyemi Abimbola</text>
+  <text x="64" y="270" font-family="IBM Plex Sans, sans-serif" font-size="24" fill="#9A8F82">Backend engineer building reliable</text>
+  <text x="64" y="306" font-family="IBM Plex Sans, sans-serif" font-size="24" fill="#9A8F82">APIs and delivery systems.</text>
+  <g>
+    <rect x="64" y="356" width="280" height="40" fill="#1C1815" stroke="#2E2822"/>
+    <circle cx="80" cy="376" r="3.5" fill="#FF7A1A"/>
+    <text x="94" y="381" font-family="IBM Plex Mono, monospace" font-size="12" fill="#EDE6DC">Campaign Engine</text>
+    <text x="244" y="381" font-family="IBM Plex Mono, monospace" font-size="11" fill="#9A8F82">NestJS</text>
+    <rect x="364" y="356" width="280" height="40" fill="#1C1815" stroke="#2E2822"/>
+    <circle cx="380" cy="376" r="3.5" fill="#FF7A1A"/>
+    <text x="394" y="381" font-family="IBM Plex Mono, monospace" font-size="12" fill="#EDE6DC">IdeaForge</text>
+    <text x="484" y="381" font-family="IBM Plex Mono, monospace" font-size="11" fill="#9A8F82">.NET 8</text>
+  </g>
+  <text x="64" y="444" font-family="IBM Plex Mono, monospace" font-size="12" fill="#EDE6DC">NestJS · TypeScript · ASP.NET Core · C# · PostgreSQL · Redis · BullMQ</text>
+  <g>
+    <rect x="748" y="144" width="388" height="328" fill="#1C1815" stroke="#2E2822"/>
+    <text x="766" y="168" font-family="IBM Plex Mono, monospace" font-size="11" fill="#9A8F82" letter-spacing="1.5">SYS_SPEC // CANDIDATE_PROFILE</text>
+    <text x="766" y="214" font-family="IBM Plex Mono, monospace" font-size="12" fill="#9A8F82">Role</text>
+    <text x="858" y="214" font-family="IBM Plex Mono, monospace" font-size="12" fill="#EDE6DC">Backend Engineer</text>
+    <text x="766" y="262" font-family="IBM Plex Mono, monospace" font-size="12" fill="#9A8F82">Primary</text>
+    <text x="858" y="262" font-family="IBM Plex Mono, monospace" font-size="12" fill="#EDE6DC">NestJS · TS · PostgreSQL</text>
+    <text x="766" y="310" font-family="IBM Plex Mono, monospace" font-size="12" fill="#9A8F82">Also uses</text>
+    <text x="858" y="310" font-family="IBM Plex Mono, monospace" font-size="12" fill="#EDE6DC">ASP.NET Core · C# · Redis</text>
+    <circle cx="862" cy="354" r="3.5" fill="#FF7A1A"/>
+    <text x="874" y="358" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#FF7A1A">Open to work</text>
+    <text x="766" y="448" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9A8F82">QUEUE-BACKED DELIVERY · CLEAN ARCHITECTURE</text>
+  </g>
+  <rect x="64" y="537" width="8" height="8" fill="#FF7A1A"/>
+  <text x="82" y="545" font-family="IBM Plex Mono, monospace" font-size="12" fill="#9A8F82">AVAILABLE FOR BACKEND ROLES AND FREELANCE CONTRACTS</text>
+  <text x="1136" y="545" font-family="IBM Plex Mono, monospace" font-size="12" fill="#9A8F82" text-anchor="end">© 2026 ADEYEMI ABIMBOLA</text>
+</svg>

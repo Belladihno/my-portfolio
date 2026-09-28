@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440" role="img" aria-label="Campaign Engine architecture diagram">
+  <style>
+    .t { font-family: 'IBM Plex Mono', monospace; font-size: 10px; fill: #EDE6DC; }
+    .m { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #9A8F82; }
+    .a { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #FF7A1A; }
+    .box { fill: #1C1815; stroke: #2E2822; stroke-width: 1; }
+    .lane { fill: none; stroke: #2E2822; stroke-width: 1; }
+    .flow { stroke: #9A8F82; stroke-width: 1; fill: none; }
+    .flow-accent { stroke: #FF7A1A; stroke-width: 1.25; fill: none; }
+  </style>
+  <!-- lane headers -->
+  <text x="12" y="18" class="m">CLIENT</text>
+  <text x="152" y="18" class="m">API</text>
+  <text x="302" y="18" class="m">QUEUE / WORKER</text>
+  <text x="442" y="18" class="m">PROVIDERS + DB</text>
+  <line x1="8" y1="26" x2="552" y2="26" class="lane"/>
+  <line x1="140" y1="8" x2="140" y2="424" class="lane"/>
+  <line x1="290" y1="8" x2="290" y2="424" class="lane"/>
+  <line x1="430" y1="8" x2="430" y2="424" class="lane"/>
+
+  <!-- Client nodes -->
+  <rect x="12" y="44" width="112" height="40" class="box"/>
+  <text x="20" y="61" class="t">Browser</text>
+  <text x="20" y="74" class="m">JWT · SSE</text>
+
+  <rect x="12" y="100" width="112" height="40" class="box"/>
+  <text x="20" y="117" class="t">Paystack</text>
+  <text x="20" y="130" class="m">checkout · webhook</text>
+
+  <rect x="12" y="156" width="112" height="40" class="box"/>
+  <text x="20" y="173" class="t">Africa&apos;s Talking</text>
+  <text x="20" y="186" class="m">SMS · receipts</text>
+
+  <!-- API nodes -->
+  <rect x="152" y="44" width="126" height="52" class="box"/>
+  <text x="160" y="62" class="t">POST /campaigns</text>
+  <text x="160" y="75" class="a">FOR UPDATE lock</text>
+  <text x="160" y="87" class="m">deduct · insert</text>
+
+  <rect x="152" y="112" width="126" height="52" class="box"/>
+  <text x="160" y="130" class="t">POST /payments</text>
+  <text x="160" y="143" class="m">PENDING row · URL</text>
+  <text x="160" y="155" class="m">no credit move</text>
+
+  <rect x="152" y="180" width="126" height="52" class="box"/>
+  <text x="160" y="198" class="t">Webhook ingress</text>
+  <text x="160" y="211" class="a">HMAC verify · UNIQUE</text>
+  <text x="160" y="223" class="m">event_id dedupe</text>
+
+  <!-- Queue / worker -->
+  <rect x="302" y="44" width="116" height="52" class="box"/>
+  <text x="310" y="62" class="t">BullMQ queue</text>
+  <text x="310" y="75" class="m">enqueue post-commit</text>
+  <text x="310" y="87" class="m">sweeper &gt; 60s</text>
+
+  <rect x="302" y="112" width="116" height="52" class="box"/>
+  <text x="310" y="130" class="t">Delivery worker</text>
+  <text x="310" y="143" class="a">FOR UPDATE campaign</text>
+  <text x="310" y="155" class="m">PENDING → PROCESSING</text>
+
+  <rect x="302" y="180" width="116" height="40" class="box"/>
+  <text x="310" y="197" class="t">SSE fan-out</text>
+  <text x="310" y="210" class="m">credit · status</text>
+
+  <!-- Providers + DB -->
+  <rect x="442" y="44" width="106" height="52" class="box"/>
+  <text x="450" y="62" class="t">Postgres</text>
+  <text x="450" y="75" class="m">source of truth</text>
+  <text x="450" y="87" class="m">counts from DB</text>
+
+  <rect x="442" y="112" width="106" height="52" class="box"/>
+  <text x="450" y="130" class="t">Redis</text>
+  <text x="450" y="143" class="m">BullMQ backing</text>
+  <text x="450" y="155" class="m">ephemeral queue</text>
+
+  <rect x="442" y="180" width="106" height="40" class="box"/>
+  <text x="450" y="197" class="t">AT gateway</text>
+  <text x="450" y="210" class="m">send · receipts</text>
+
+  <!-- Flows -->
+  <!-- campaign submit -->
+  <path d="M124 64 H152" class="flow-accent"/>
+  <path d="M278 64 H302" class="flow-accent"/>
+  <path d="M360 96 V112" class="flow"/>
+  <path d="M360 164 H442" class="flow"/>
+  <!-- payment initiate -->
+  <path d="M124 120 H152" class="flow"/>
+  <path d="M215 164 H215 V180" class="flow"/>
+  <!-- paystack webhook credit -->
+  <path d="M124 120 C 90 240, 90 260, 152 260" class="flow"/>
+  <path d="M278 206 H302" class="flow"/>
+  <path d="M360 200 H442" class="flow"/>
+  <!-- AT receipt -->
+  <path d="M124 176 C 90 300, 100 320, 152 320" class="flow"/>
+  <path d="M278 320 H380 V220" class="flow"/>
+  <!-- SSE back -->
+  <path d="M302 200 H124 V84" class="flow-accent"/>
+
+  <text x="12" y="360" class="m">POST /campaigns → lock → deduct → insert → enqueue → BullMQ → SMS → SSE</text>
+  <text x="12" y="376" class="m">POST /payments → Paystack URL → webhook → HMAC → credit tx → SSE</text>
+  <text x="12" y="392" class="m">AT receipt webhook → match at_message_id → advance status → SSE</text>
+  <text x="12" y="412" class="a">LOCK: FOR UPDATE (workspace · campaign) — DEDUPE: UNIQUE(event_id) · UNIQUE(key, workspace)</text>
+</svg>

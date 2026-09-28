@@ -1,0 +1,18 @@
+# ---> Dependencies <---
+/node_modules
+
+# ---> Next.js <---
+/.next/
+/out/
+
+# ---> Vercel <---
+.vercel
+
+# ---> Misc <---
+*.log
+.DS_Store
+.env*.local
+
+# ---> Local reference material (do not publish) <---
+stitch_trd_document_analyzer/
+bellanzo-portfolio-trd-v2.md
