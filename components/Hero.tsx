@@ -25,6 +25,14 @@ export default function Hero() {
             >
               GitHub ↑↗
             </a>
+            <a
+              href="https://drive.google.com/file/d/1lJkCNMz7F51gzdbEilfPakqaIHUEE9xU/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted transition-colors duration-150 hover:text-text"
+            >
+              Resume ↑↗
+            </a>
           </div>
         </div>
         <div className="w-full border border-border bg-surface p-6 lg:col-span-5">
