@@ -40,10 +40,6 @@ export default function Contact() {
             </a>
           ))}
         </div>
-        <div className="flex items-center gap-2 font-mono text-[11px] text-muted">
-          <span className="inline-block h-1.5 w-1.5 bg-accent" />
-          <span>Available for backend roles and freelance contracts.</span>
-        </div>
       </div>
     </section>
   );

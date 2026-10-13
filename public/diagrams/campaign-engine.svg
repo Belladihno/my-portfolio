@@ -44,7 +44,7 @@
 
   <rect x="152" y="180" width="126" height="52" class="box"/>
   <text x="160" y="198" class="t">Webhook ingress</text>
-  <text x="160" y="211" class="a">HMAC verify · UNIQUE</text>
+  <text x="160" y="211" class="a">HMAC-SHA512 · UNIQUE</text>
   <text x="160" y="223" class="m">event_id dedupe</text>
 
   <!-- Queue / worker -->
@@ -71,7 +71,7 @@
   <rect x="442" y="112" width="106" height="52" class="box"/>
   <text x="450" y="130" class="t">Redis</text>
   <text x="450" y="143" class="m">BullMQ backing</text>
-  <text x="450" y="155" class="m">ephemeral queue</text>
+  <text x="450" y="155" class="m">idempotency keys 24h</text>
 
   <rect x="442" y="180" width="106" height="40" class="box"/>
   <text x="450" y="197" class="t">AT gateway</text>
@@ -99,5 +99,5 @@
   <text x="12" y="360" class="m">POST /campaigns → lock → deduct → insert → enqueue → BullMQ → SMS → SSE</text>
   <text x="12" y="376" class="m">POST /payments → Paystack URL → webhook → HMAC → credit tx → SSE</text>
   <text x="12" y="392" class="m">AT receipt webhook → match at_message_id → advance status → SSE</text>
-  <text x="12" y="412" class="a">LOCK: FOR UPDATE (workspace · campaign) — DEDUPE: UNIQUE(event_id) · UNIQUE(key, workspace)</text>
+  <text x="12" y="412" class="a">LOCK: FOR UPDATE (workspace · campaign) — DEDUPE: UNIQUE(event_id) · UNIQUE(key, workspace) — RETRY: 3 attempts · expo 5s · 10/sec</text>
 </svg>

@@ -1,5 +1,6 @@
 export type FeaturedProject = {
   slug: string;
+  order: number; // display position, 1 = first
   name: string;
   description: string;
   stack: string[];
@@ -24,6 +25,7 @@ export const projects: Project[] = [
   // Featured
   {
     slug: "campaign-engine",
+    order: 2,
     name: "Campaign Engine",
     description:
       "Multi-tenant SMS delivery platform with queue-backed dispatch, segment-aware billing, and idempotent payment webhooks.",
@@ -44,14 +46,35 @@ export const projects: Project[] = [
   },
   {
     slug: "ideaforge",
+    order: 3,
     name: "IdeaForge",
     description:
       "AI use case prioritization pipeline with weighted scoring, ranked leaderboard, and governed status transitions in Clean Architecture.",
-    stack: ["ASP.NET Core", "C#", ".NET 8", "EF Core", "PostgreSQL", "MediatR"],
+    stack: ["ASP.NET Core", "C#", ".NET 8", "EF Core 9", "PostgreSQL", "MediatR"],
     isLive: true,
     liveUrl: "https://ideaforge-omega-inky.vercel.app/",
-    repoUrl: "https://github.com/Belladihno/ideaforge",
+    repoUrl: "https://github.com/Belladihno/IdeaForge",
     diagramPath: "/diagrams/ideaforge.svg",
+    featured: true,
+  },
+  {
+    slug: "zeedle",
+    order: 1,
+    name: "Zeedle",
+    description:
+      "Peer-to-peer digital wallet for instant, zero-fee transfers with double-entry bookkeeping and idempotent payment webhooks.",
+    stack: [
+      "NestJS",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "Paystack",
+      "Next.js",
+    ],
+    isLive: true,
+    liveUrl: "https://zeedle.vercel.app",
+    repoUrl: "https://github.com/Belladihno/zeedle",
+    diagramPath: "/diagrams/zeedle.svg",
     featured: true,
   },
   // Index
@@ -89,9 +112,9 @@ export const projects: Project[] = [
   },
 ];
 
-export const featuredProjects: FeaturedProject[] = projects.filter(
-  (p): p is FeaturedProject => p.featured === true
-);
+export const featuredProjects: FeaturedProject[] = projects
+  .filter((p): p is FeaturedProject => p.featured === true)
+  .sort((a, b) => a.order - b.order);
 
 export const indexProjects: IndexProject[] = projects.filter(
   (p): p is IndexProject => p.featured === false

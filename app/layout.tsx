@@ -48,7 +48,7 @@ export default function RootLayout({
               <span>Available for backend roles and freelance contracts.</span>
             </div>
             <div className="font-mono text-[11px] tracking-wider text-muted md:text-right">
-              © 2026 Adeyemi Abimbola
+              © 2026 ABIMBOLA OMISAKIN
             </div>
           </div>
         </footer>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" role="img" aria-label="IdeaForge architecture diagram">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 476" role="img" aria-label="IdeaForge architecture diagram">
   <style>
     .t { font-family: 'IBM Plex Mono', monospace; font-size: 10px; fill: #EDE6DC; }
     .m { font-family: 'IBM Plex Mono', monospace; font-size: 9px; fill: #9A8F82; }
@@ -53,4 +53,5 @@
   <text x="12" y="412" class="m">PATCH for status transitions (partial change) · GUID keys (no enumeration)</text>
   <text x="12" y="428" class="m">12 tests green: Domain scoring · mocked handlers · validators · DATABASE_URL normalize</text>
   <text x="12" y="444" class="a">ALL DEPENDENCY ARROWS POINT INWARD — Domain references nothing</text>
+  <text x="12" y="460" class="m">CONSUMED BY: React SPA (IdeaForge-web) · preview display-only · server order trusted</text>
 </svg>
